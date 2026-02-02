@@ -1,37 +1,33 @@
-# Fix mod names in script.js by extracting correct names from download file names
+$jsonContent = Get-Content "fs22_mods_gen.json" -Raw | ConvertFrom-Json
+$fixedMods = @()
 
-$scriptPath = "script.js"
-$downloadsDir = "downloads"
-
-# Read script.js content
-$content = Get-Content $scriptPath -Raw -Encoding UTF8
-
-# Get all zip files and create a mapping
-$zipFiles = Get-ChildItem -Path $downloadsDir -Filter "*.zip" | Select-Object -ExpandProperty Name
-
-foreach ($zipFile in $zipFiles) {
-    # Extract readable name from zip file
-    # FS25_FarmTurkMap.zip -> FarmTurkMap -> Farm Turk Map
-    $baseName = $zipFile -replace "\.zip$", ""
+foreach ($mod in $jsonContent) {
+    $fileName = Split-Path $mod.downloadUrl -Leaf
+    $baseName = $fileName -replace "\.zip$", ""
     
-    # Create the download path as it appears in script.js
-    $downloadPath = "downloads/$zipFile"
+    # 1. Remove prefixes
+    $name = $baseName -replace "^FS22_", "" -replace "^FS_", "" -replace "^FS22", ""
     
-    # Create a readable name: FS25_FarmTurkMap -> Farm Turk Map
-    $readableName = $baseName -replace "^FS25_", ""
-    $readableName = $readableName -replace "_", " "
+    # 2. Replace underscores/dots with spaces
+    $name = $name -replace "[_\.-]", " "
     
-    # Find and replace the broken name in the JSON structure
-    # Look for entries with this downloadUrl and fix their name
-    $pattern = '("name":\s*")([^"]+)(",\s*"category"[^}]+?"downloadUrl":\s*"' + [regex]::Escape($downloadPath) + '")'
+    # 3. Split CamelCase (Simple version)
+    $name = $name -replace "([a-z])([A-Z])", '$1 $2'
     
-    if ($content -match $pattern) {
-        $content = $content -replace $pattern, ('$1' + $readableName + '$3')
-        Write-Host "Fixed: $readableName"
-    }
+    # 4. Split numbers
+    $name = $name -replace "([a-zA-Z])(\d)", '$1 $2'
+    $name = $name -replace "(\d)([a-zA-Z])", '$1 $2'
+    
+    # 5. Clean up multiple spaces
+    $name = $name -replace "\s+", " "
+    $name = $name.Trim()
+    
+    # Update properties
+    $mod.name = $name
+    $mod.description = "$name modu - FS22 için. İndirin ve oyununuza ekleyin."
+    
+    $fixedMods += $mod
 }
 
-# Save the fixed content
-$content | Set-Content $scriptPath -Encoding UTF8
-
-Write-Host "`nDone! Fixed mod names in script.js"
+$fixedMods | ConvertTo-Json -Depth 3 | Out-File "fs22_mods_gen.json" -Encoding utf8
+Write-Host "Fixed names in fs22_mods_gen.json"
