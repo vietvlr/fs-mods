@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Farming Simulator 25 ve Farming Simulator 22 için en iyi modları keşfedin. Traktörler, haritalar, ekipmanlar ve daha fazlası.">
+  <title>FS Mod Hub - Farming Simulator 25 & 22 Modları</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css?v=6">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🚜</span>
+        <span>FS Mod Hub</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Ana Sayfa</a></li>
+        <li><a href="fs25.html">FS 25 Modları</a></li>
+        <li><a href="fs22.html">FS 22 Modları</a></li>
+        <li><a href="mod-ekle.html" class="highlight-link">➕ Mod Ekle</a></li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <!-- Announcement Banner -->
+  <div class="announcement-banner">
+    <div class="container">
+      <span class="announcement-icon">📢</span>
+      <span class="announcement-text">Yeni Güncelleme: FS25 modları artık resimlerle birlikte! Traktör koleksiyonumuzu
+        keşfedin.</span>
+      <button class="announcement-close" onclick="this.parentElement.parentElement.style.display='none'">✕</button>
+    </div>
+  </div>
+
+  <!-- Hero Section with Animated Background -->
+  <section class="hero hero-enhanced">
+    <div class="hero-bg-animation">
+      <div class="floating-tractor">🚜</div>
+      <div class="floating-wheat">🌾</div>
+      <div class="floating-sun">☀️</div>
+      <div class="floating-cloud cloud-1">☁️</div>
+      <div class="floating-cloud cloud-2">☁️</div>
+    </div>
+    <div class="hero-content animate-fade-in">
+      <div class="hero-badge pulse-animation">🚀 Farming Simulator 25 Hazır!</div>
+      <h1>
+        <span class="highlight gradient-text">Çiftçiliğin</span> Modlu Hali
+      </h1>
+      <p>
+        FS 25 ve FS 22 için en kaliteli, onaylanmış ve güvenilir modları keşfedin.
+        Traktörlerden devasa haritalara kadar her şey burada.
+      </p>
+
+      <!-- Quick Search on Homepage -->
+      <div class="hero-search">
+        <div class="hero-search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="hero-search-input" placeholder="Mod ara... (ör: New Holland, Harita)">
+          <button class="hero-search-btn" onclick="searchFromHome()">Ara</button>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#featured" class="btn-primary btn-glow">
+          <span>✨</span> Keşfetmeye Başla
+        </a>
+        <a href="mod-ekle.html" class="btn-secondary">
+          <span>📤</span> Mod Yükle
+        </a>
+      </div>
+
+      <!-- Stats Bar with Real Data -->
+      <div class="hero-stats glass-effect">
+        <div class="stat-item">
+          <span class="stat-number count-up" id="total-mod-count">0</span>
+          <span class="stat-label">Toplam Mod</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="tractor-count">0</span>
+          <span class="stat-label">Traktör</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" id="map-count">0</span>
+          <span class="stat-label">Harita</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Güncel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Selection Cards -->
+  <section class="games-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-icon">🎮</span>
+        Oyununu Seç
+      </h2>
+      <div class="game-cards">
+        <a href="fs25.html" class="game-card fs25-card hover-lift">
+          <div class="card-bg"></div>
+          <div class="game-card-badge">YENİ</div>
+          <div class="game-card-content">
+            <div class="game-card-icon bounce-animation">🌾</div>
+            <h3>Farming Simulator 25</h3>
+            <p>Yeni nesil modlar ve haritalar</p>
+            <span class="mod-count">
+              <span id="fs25-count">...</span> Mod Mevcut
+            </span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+
+        <a href="fs22.html" class="game-card fs22-card hover-lift">
+          <div class="card-bg"></div>
+          <div class="game-card-content">
+            <div class="game-card-icon bounce-animation">🌻</div>
+            <h3>Farming Simulator 22</h3>
+            <p>Klasik ve popüler eklentiler</p>
+            <span class="mod-count">
+              <span id="fs22-count">...</span> Mod Mevcut
+            </span>
+            <div class="card-arrow">→</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Arrivals Section -->
+  <section class="new-arrivals-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-icon">🆕</span>
+          Yeni Eklenenler
+        </h2>
+        <a href="fs25.html" class="view-all-link">Tümünü Gör →</a>
+      </div>
+      <div class="new-arrivals-scroll" id="new-arrivals-container">
+        <!-- JS will populate -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Home Categories -->
+  <section class="categories-showcase">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-icon">📂</span>
+        Kategorilere Göz At
+      </h2>
+      <div class="category-grid">
+        <a href="fs25.html?cat=tractors" class="cat-card hover-scale">
+          <span class="cat-icon">🚜</span>
+          <span class="cat-name">Traktörler</span>
+          <span class="cat-count" id="cat-tractors-count">0</span>
+        </a>
+        <a href="fs25.html?cat=harvesters" class="cat-card hover-scale">
+          <span class="cat-icon">🌾</span>
+          <span class="cat-name">Biçerdöver</span>
+          <span class="cat-count" id="cat-harvesters-count">0</span>
+        </a>
+        <a href="fs25.html?cat=maps" class="cat-card hover-scale">
+          <span class="cat-icon">🗺️</span>
+          <span class="cat-name">Haritalar</span>
+          <span class="cat-count" id="cat-maps-count">0</span>
+        </a>
+        <a href="fs25.html?cat=trucks" class="cat-card hover-scale">
+          <span class="cat-icon">🚚</span>
+          <span class="cat-name">Kamyonlar</span>
+          <span class="cat-count" id="cat-trucks-count">0</span>
+        </a>
+        <a href="fs25.html?cat=equipment" class="cat-card hover-scale">
+          <span class="cat-icon">⚙️</span>
+          <span class="cat-name">Ekipman</span>
+          <span class="cat-count" id="cat-equipment-count">0</span>
+        </a>
+        <a href="fs25.html?cat=gameplay" class="cat-card hover-scale">
+          <span class="cat-icon">🎮</span>
+          <span class="cat-name">Oynanış</span>
+          <span class="cat-count" id="cat-gameplay-count">0</span>
+        </a>
+        <a href="fs25.html?cat=objects" class="cat-card hover-scale">
+          <span class="cat-icon">🏠</span>
+          <span class="cat-name">Binalar</span>
+          <span class="cat-count" id="cat-objects-count">0</span>
+        </a>
+        <a href="fs25.html?cat=tools" class="cat-card hover-scale">
+          <span class="cat-icon">🔧</span>
+          <span class="cat-name">Aletler</span>
+          <span class="cat-count" id="cat-tools-count">0</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Mods Showcase (Dynamic) -->
+  <section id="featured" class="featured-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-icon">🔥</span>
+          Öne Çıkanlar
+        </h2>
+        <a href="fs25.html" class="view-all-link">Tümünü Gör →</a>
+      </div>
+      <div class="mods-grid" id="featured-mods-grid">
+        <!-- JS will populate -->
+        <div class="loading">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Brands Section -->
+  <section class="brands-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-icon">🏆</span>
+        Popüler Markalar
+      </h2>
+      <div class="brands-scroll">
+        <a href="fs25.html?search=John+Deere" class="brand-item">
+          <span class="brand-logo">🟢</span>
+          <span class="brand-name">John Deere</span>
+        </a>
+        <a href="fs25.html?search=New+Holland" class="brand-item">
+          <span class="brand-logo">🔵</span>
+          <span class="brand-name">New Holland</span>
+        </a>
+        <a href="fs25.html?search=Deutz+Fahr" class="brand-item">
+          <span class="brand-logo">🟢</span>
+          <span class="brand-name">Deutz Fahr</span>
+        </a>
+        <a href="fs25.html?search=Massey+Ferguson" class="brand-item">
+          <span class="brand-logo">🔴</span>
+          <span class="brand-name">Massey Ferguson</span>
+        </a>
+        <a href="fs25.html?search=Tumosan" class="brand-item">
+          <span class="brand-logo">🔴</span>
+          <span class="brand-name">Tümosan</span>
+        </a>
+        <a href="fs25.html?search=Erkunt" class="brand-item">
+          <span class="brand-logo">🔴</span>
+          <span class="brand-name">Erkunt</span>
+        </a>
+        <a href="fs25.html?search=JCB" class="brand-item">
+          <span class="brand-logo">🟡</span>
+          <span class="brand-name">JCB</span>
+        </a>
+        <a href="fs25.html?search=Landini" class="brand-item">
+          <span class="brand-logo">🔵</span>
+          <span class="brand-name">Landini</span>
+        </a>
+        <a href="fs25.html?search=Kuhn" class="brand-item">
+          <span class="brand-logo">🔴</span>
+          <span class="brand-name">Kuhn</span>
+        </a>
+        <a href="fs25.html?search=Lemken" class="brand-item">
+          <span class="brand-logo">🔵</span>
+          <span class="brand-name">Lemken</span>
+        </a>
+        <a href="fs25.html?search=Alpego" class="brand-item">
+          <span class="brand-logo">🟡</span>
+          <span class="brand-name">Alpego</span>
+        </a>
+        <a href="fs25.html?search=Lizard" class="brand-item">
+          <span class="brand-logo">🦎</span>
+          <span class="brand-name">Lizard</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-us-section">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-icon">💎</span>
+        Neden FS Mod Hub?
+      </h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Güvenilir Modlar</h3>
+          <p>Tüm modlar test edilmiş ve virüssüzdür.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Hızlı İndirme</h3>
+          <p>Doğrudan indirme linkleri, bekleme yok.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Sürekli Güncelleme</h3>
+          <p>Her gün yeni modlar ekleniyor.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🇹🇷</div>
+          <h3>Türkçe Destek</h3>
+          <p>Tamamen Türkçe arayüz ve açıklamalar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span>🚜</span>
+          <span>FS Mod Hub</span>
+        </div>
+        <div class="footer-sections">
+          <div class="footer-section">
+            <h4>Sayfalar</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Ana Sayfa</a></li>
+              <li><a href="fs25.html">FS 25 Modları</a></li>
+              <li><a href="fs22.html">FS 22 Modları</a></li>
+              <li><a href="mod-ekle.html">Mod Ekle</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Kategoriler</h4>
+            <ul class="footer-links">
+              <li><a href="fs25.html?cat=tractors">Traktörler</a></li>
+              <li><a href="fs25.html?cat=maps">Haritalar</a></li>
+              <li><a href="fs25.html?cat=equipment">Ekipmanlar</a></li>
+              <li><a href="fs25.html?cat=trucks">Kamyonlar</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 FS Mod Hub. Tüm hakları saklıdır.</p>
+        <p style="margin-top: 8px; font-size: 0.8rem;">
+          Bu site Giants Software ile bağlantılı değildir. Farming Simulator, Giants Software'in tescilli markasıdır.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Search from homepage
+    function searchFromHome() {
+      const query = document.getElementById('hero-search-input').value;
+      if (query.trim()) {
+        window.location.href = `fs25.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+
+    // Enter key support
+    document.getElementById('hero-search-input')?.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') searchFromHome();
+    });
+  </script>
+
+</body>
+
+</html>

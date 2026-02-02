@@ -1,0 +1,17 @@
+# Large files (>100MB) excluded from GitHub upload
+downloads/FS25_Yigitpinari_Village.zip
+downloads/FS25_Westerrade.zip
+downloads/FS25_Mala_wies.zip
+downloads/FarmTurkMap.zip
+downloads/FS25_5s_v3_pempe.zip
+downloads/FS25_GarageCowSheed.zip
+downloads/FS25_modernHouseSet.zip
+downloads/FS25_NewHollandT5AC_DC.zip
+downloads/FS25_PGR_MPack.zip
+
+# System files
+thumbs.db
+desktop.ini
+.DS_Store
+
+downloads/

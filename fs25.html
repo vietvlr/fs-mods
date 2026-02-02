@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Farming Simulator 25 için en iyi modları keşfedin. Traktörler, haritalar, ekipmanlar ve daha fazlası.">
+    <title>FS 25 Modları - FS Mod Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css?v=6">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🚜</span>
+                <span>FS Mod Hub</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="fs25.html" class="active">FS 25 Modları</a></li>
+                <li><a href="fs22.html">FS 22 Modları</a></li>
+                <li><a href="mod-ekle.html" class="highlight-link">➕ Mod Ekle</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+        <div class="container">
+            <span class="announcement-icon">🌾</span>
+            <span class="announcement-text">Farming Simulator 25 modları artık resimlerle birlikte!</span>
+            <button class="announcement-close"
+                onclick="this.parentElement.parentElement.style.display='none'">✕</button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header page-header-enhanced">
+        <div class="hero-bg-animation">
+            <div class="floating-wheat" style="left: 5%; bottom: 30%;">🌾</div>
+            <div class="floating-tractor" style="right: 10%; bottom: 20%;">🚜</div>
+        </div>
+        <div class="container">
+            <div class="page-header-badge pulse-animation">🎮 FS 25</div>
+            <h1 class="gradient-text">Farming Simulator 25 Modları</h1>
+        </div>
+    </header>
+
+    <!-- Search & Filter -->
+    <section class="search-filter-section">
+        <div class="container">
+            <div class="search-filter-container">
+                <div class="search-boxes" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-input" placeholder="İsme göre ara..." autocomplete="off">
+                    </div>
+                    <div class="search-box">
+                        <span class="search-icon">#️⃣</span>
+                        <input type="text" id="search-id-input" placeholder="ID'ye göre ara..." autocomplete="off"
+                            style="width: 120px;">
+                    </div>
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn total-btn active" data-category="all">📊 Tümü <span class="btn-count"
+                            id="count-all">0</span></button>
+                    <button class="filter-btn" data-category="tractors">🚜 Traktörler <span class="btn-count"
+                            id="count-tractors">0</span></button>
+                    <button class="filter-btn" data-category="maps">🗺️ Haritalar <span class="btn-count"
+                            id="count-maps">0</span></button>
+                    <button class="filter-btn" data-category="equipment">⚙️ Ekipmanlar <span class="btn-count"
+                            id="count-equipment">0</span></button>
+                    <button class="filter-btn" data-category="harvesters">🌾 Biçerdöverler <span class="btn-count"
+                            id="count-harvesters">0</span></button>
+                    <button class="filter-btn" data-category="trucks">🚚 Kamyonlar <span class="btn-count"
+                            id="count-trucks">0</span></button>
+                    <button class="filter-btn" data-category="objects">🏠 Binalar <span class="btn-count"
+                            id="count-objects">0</span></button>
+                    <button class="filter-btn" data-category="tools">🔧 Aletler <span class="btn-count"
+                            id="count-tools">0</span></button>
+                    <button class="filter-btn" data-category="gameplay">🎮 Oynanış <span class="btn-count"
+                            id="count-gameplay">0</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mods Grid -->
+    <section class="mods-section">
+        <div class="container">
+            <div class="mods-grid" id="mods-grid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>🚜</span>
+                    <span>FS Mod Hub</span>
+                </div>
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h4>Sayfalar</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Ana Sayfa</a></li>
+                            <li><a href="fs25.html">FS 25 Modları</a></li>
+                            <li><a href="fs22.html">FS 22 Modları</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Kategoriler</h4>
+                        <ul class="footer-links">
+                            <li><a href="fs25.html?cat=tractors">Traktörler</a></li>
+                            <li><a href="fs25.html?cat=maps">Haritalar</a></li>
+                            <li><a href="fs25.html?cat=equipment">Ekipmanlar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FS Mod Hub. Tüm hakları saklıdır.</p>
+                <p style="margin-top: 8px; font-size: 0.8rem;">
+                    Bu site Giants Software ile bağlantılı değildir. Farming Simulator, Giants Software'in tescilli
+                    markasıdır.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bulk Download Button -->
+    <button id="bulk-download-btn" class="bulk-download-btn" title="Toplu Mod İndir">
+        <span class="icon">📦</span>
+        <span class="text">Toplu İndir</span>
+    </button>
+
+    <!-- Bulk Download Modal -->
+    <div id="bulk-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>📦 Toplu Mod İndir</h2>
+            <p>Özel mod paketi kodunu aşağıya girin:</p>
+            <div class="modal-input-group">
+                <input type="text" id="pack-code-input" placeholder="Paket Kodu">
+                <button id="download-pack-btn" class="btn-primary">İndir</button>
+                <button id="stop-pack-btn" class="btn-danger" style="display: none;">Durdur</button>
+            </div>
+            <div id="pack-status" class="pack-status"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Update category button counts when loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const mods = allMods.fs25 || [];
+
+                // Update mod count text in header
+                const modCountEl = document.getElementById('mod-count');
+                if (modCountEl) {
+                    modCountEl.textContent = mods.length + ' mod mevcut';
+                }
+
+                // Update category button counts
+                const categories = ['all', 'tractors', 'maps', 'equipment', 'harvesters', 'trucks', 'objects', 'tools', 'gameplay'];
+                categories.forEach(cat => {
+                    const countEl = document.getElementById('count-' + cat);
+                    if (countEl) {
+                        if (cat === 'all') {
+                            countEl.textContent = mods.length;
+                        } else {
+                            countEl.textContent = mods.filter(m => m.category === cat).length;
+                        }
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

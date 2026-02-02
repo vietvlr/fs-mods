@@ -1,0 +1,150 @@
+{
+  "fs25": [
+    {
+      "id": 1,
+      "name": "John Deere 8R Series",
+      "category": "tractors",
+      "description": "John Deere 8R serisi traktör. 250-410 HP güç aralığında, gerçekçi motor sesleri ve detaylı iç mekan.",
+      "author": "Giants Software",
+      "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 2,
+      "name": "Fendt 1000 Vario",
+      "category": "tractors",
+      "description": "Fendt 1000 Vario serisi. 380-517 HP, VarioDrive şanzıman sistemi ve premium konfor.",
+      "author": "ModHub Team",
+      "image": "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 3,
+      "name": "Elmcreek Plus",
+      "category": "maps",
+      "description": "Genişletilmiş Elmcreek haritası. Yeni alanlar, ekstra tarlalar ve geliştirilmiş detaylar.",
+      "author": "MapMakers",
+      "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 4,
+      "name": "Haut-Beyleron Extended",
+      "category": "maps",
+      "description": "Fransa temalı genişletilmiş harita. Üzüm bağları, şarap üretimi ve pitoresk köyler.",
+      "author": "French Modding",
+      "image": "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 5,
+      "name": "AMAZONE Centaur 6001",
+      "category": "equipment",
+      "description": "AMAZONE Centaur 6001 disk tırmık. 6 metre çalışma genişliği, yüksek verimlilik.",
+      "author": "Equipment Pro",
+      "image": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 6,
+      "name": "Krone BiG X 1180",
+      "category": "equipment",
+      "description": "Krone BiG X 1180 silaj makinesi. 1156 HP motor, EasyFlow 380 S toplama ünitesi.",
+      "author": "Harvest Kings",
+      "image": "https://images.unsplash.com/photo-1530507629858-e4977d30e9e0?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 7,
+      "name": "Case IH Axial-Flow 9250",
+      "category": "harvesters",
+      "description": "Case IH Axial-Flow 9250 biçerdöver. 625 HP, 14.400 litre tahıl deposu.",
+      "author": "CaseIH Mods",
+      "image": "https://images.unsplash.com/photo-1591086327376-e1edcd8298c9?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 8,
+      "name": "Mercedes-Benz Actros MP4",
+      "category": "trucks",
+      "description": "Mercedes-Benz Actros MP4 kamyon. Çeşitli konfigürasyonlar ve renk seçenekleri.",
+      "author": "Truck World",
+      "image": "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    }
+  ],
+  "fs22": [
+    {
+      "id": 1,
+      "name": "Case IH Magnum 380 CVX",
+      "category": "tractors",
+      "description": "Case IH Magnum 380 CVX. CVX şanzıman, 380 HP güç, premium kabin.",
+      "author": "RedPower Mods",
+      "image": "https://images.unsplash.com/photo-1589923188900-85dae523342b?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 2,
+      "name": "New Holland T7 Heavy Duty",
+      "category": "tractors",
+      "description": "New Holland T7 Heavy Duty serisi. 300 HP, ağır hizmet şasisi, PLM teknolojisi.",
+      "author": "NH Modding",
+      "image": "https://images.unsplash.com/photo-1592805144716-feeccccef5ac?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 3,
+      "name": "Calmsden Farm",
+      "category": "maps",
+      "description": "İngiltere temalı çiftlik haritası. Otantik İngiliz kırsalı, küçük tarlalar ve taş duvarlar.",
+      "author": "UK Farming",
+      "image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 4,
+      "name": "Stone Valley",
+      "category": "maps",
+      "description": "Amerikan tarzı büyük çiftlik haritası. Geniş tarlalar, modern tesisler.",
+      "author": "American Maps",
+      "image": "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 5,
+      "name": "CLAAS Lexion 8900",
+      "category": "harvesters",
+      "description": "CLAAS Lexion 8900 biçerdöver. 790 HP, TERRA TRAC paletli sistem, 18.000L depo.",
+      "author": "CLAAS Fans",
+      "image": "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 6,
+      "name": "Väderstad Rapid 300C",
+      "category": "equipment",
+      "description": "Väderstad Rapid 300C ekim makinesi. 3 metre, yüksek hassasiyet, hızlı çalışma.",
+      "author": "Seeding Pro",
+      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 7,
+      "name": "Scania S730",
+      "category": "trucks",
+      "description": "Scania S730 çekici. 730 HP V8 motor, lüks kabin, çeşitli römork seçenekleri.",
+      "author": "Scania Mods",
+      "image": "https://images.unsplash.com/photo-1586191583407-e5d1dc6d3c29?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    },
+    {
+      "id": 8,
+      "name": "JCB Fastrac 8330",
+      "category": "tractors",
+      "description": "JCB Fastrac 8330. 348 HP, 70 km/h yol hızı, benzersiz süspansiyon sistemi.",
+      "author": "JCB World",
+      "image": "https://images.unsplash.com/photo-1605133222048-91c2b2abfba7?w=400&h=300&fit=crop",
+      "downloadUrl": "#"
+    }
+  ]
+}

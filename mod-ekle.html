@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod Ekleme Aracı - FS Mod Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css?v=5">
+    <style>
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .preview-sticky {
+            position: sticky;
+            top: 100px;
+        }
+
+        .code-output {
+            margin-top: 32px;
+            background: #000;
+            padding: 20px;
+            border-radius: var(--radius);
+            font-family: monospace;
+            color: #4ade80;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 6px 12px;
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-sticky {
+                position: static;
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🛠️</span>
+                <span>Mod Oluşturucu</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="fs25.html">FS 25</a></li>
+                <li><a href="fs22.html">FS 22</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 120px; padding-bottom: 80px;">
+        <header style="text-align: center; margin-bottom: 60px;">
+            <div style="position: relative; display: inline-block;">
+                <h1>Yeni Mod Ekle</h1>
+                <button onclick="logout()" id="logoutBtn"
+                    style="display: none; position: absolute; top: 0; right: -120px; font-size: 0.8rem; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; padding: 4px 12px; border-radius: 4px; cursor: pointer;">Çıkış
+                    Yap</button>
+            </div>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Mod bilgilerini aşağıya girin, otomatik oluşturulan kodu kopyalayıp
+                <code
+                    style="color: var(--accent-green); background: rgba(74,222,128,0.1); padding: 2px 6px; border-radius: 4px;">script.js</code>
+                dosyasına yapıştırın.
+            </p>
+        </header>
+
+        <div class="split-layout">
+            <!-- Form Bölümü -->
+            <div class="form-card">
+                <h2 style="margin-bottom: 24px;">📝 Mod Bilgileri</h2>
+
+                <div class="form-group">
+                    <label>Hangi Oyun?</label>
+                    <select id="gameType" onchange="generateCode()">
+                        <option value="fs25" selected>Farming Simulator 25</option>
+                        <option value="fs22">Farming Simulator 22</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Mod Adı</label>
+                    <input type="text" id="modName" placeholder="Örn: John Deere 8R" oninput="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="modCategory" onchange="updatePreview()">
+                        <option value="tractors">Traktörler</option>
+                        <option value="maps">Haritalar</option>
+                        <option value="equipment">Ekipmanlar</option>
+                        <option value="harvesters">Biçerdöverler</option>
+                        <option value="trucks">Kamyonlar</option>
+                        <option value="gameplay">Oynanış</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea id="modDesc" rows="3" placeholder="Mod hakkında kısa bilgi..."
+                        oninput="updatePreview()"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Yapımcı (Author)</label>
+                    <input type="text" id="modAuthor" placeholder="Örn: Giants Software" oninput="updatePreview()">
+                </div>
+
+                <div class="form-group">
+                    <label>Resim Linkleri (URL)</label>
+                    <div id="imageInputs">
+                        <div class="image-input-group" style="margin-bottom: 10px; display: flex; gap: 10px;">
+                            <input type="text" class="mod-image-url" placeholder="https://..."
+                                oninput="updatePreview()">
+                        </div>
+                    </div>
+                    <button type="button" onclick="addImageInput()"
+                        style="background: var(--bg-secondary); border: 1px dashed var(--border-color); color: var(--accent-green); padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-top: 8px; font-size: 0.9rem;">
+                        + Başka Resim Ekle
+                    </button>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                        İpucu: İlk resim ana kapak resmi olacaktır.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label>İndirme Türü</label>
+                    <div style="display: flex; gap: 20px; margin-bottom: 12px;">
+                        <label
+                            style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                            <input type="radio" name="linkType" value="web" checked onchange="toggleLinkInput()"> Web
+                            Linki
+                        </label>
+                        <label
+                            style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                            <input type="radio" name="linkType" value="local" onchange="toggleLinkInput()"> Yerel Dosya
+                            (Downloads)
+                        </label>
+                    </div>
+
+                    <div id="webInputGroup">
+                        <label>İndirme Linki</label>
+                        <input type="text" id="modLink" placeholder="https://www.farming-simulator.com/..."
+                            oninput="updatePreview()">
+                    </div>
+
+                    <div id="localInputGroup" style="display: none;">
+                        <label>Dosya Adı (uzantısı ile)</label>
+                        <input type="text" id="localFileName" placeholder="Örn: t7_modu.zip" oninput="updatePreview()">
+                        <p style="font-size: 0.8rem; color: var(--accent-orange); margin-top: 4px;">
+                            🔔 Dosyayı <strong>downloads</strong> klasörüne attığınızdan emin olun!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Önizleme ve Kod Bölümü -->
+            <div class="preview-sticky">
+                <h2 style="margin-bottom: 24px;">👁️ Önizleme</h2>
+
+                <!-- Mod Card Preview (Same structure as main site) -->
+                <div class="mod-card" id="cardPreview">
+                    <img src="" alt="Preview" class="mod-card-image" id="previewImage"
+                        onerror="this.src='https://via.placeholder.com/400x200/1a1a25/4ade80?text=Resim+Yok'">
+                    <div class="mod-card-content">
+                        <span class="mod-card-category" id="previewCategory">TRAKTÖRLER</span>
+                        <h3 id="previewTitle">Mod Adı</h3>
+                        <p id="previewDesc">Mod açıklaması burada görünecek...</p>
+                        <div class="mod-card-footer">
+                            <span class="mod-author" id="previewAuthor">👤 Yapımcı</span>
+                            <a href="#" class="download-btn">
+                                <span>⬇️</span> İndir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-output">
+                    <button class="copy-btn" onclick="copyCode()">Kopyala</button>
+                    <code id="generatedCode">// Kod burada görünecek...</code>
+                </div>
+
+                <div
+                    style="margin-top: 20px; padding: 16px; background: rgba(251, 146, 60, 0.1); border: 1px solid var(--accent-orange); border-radius: var(--radius); color: var(--accent-orange);">
+                    <strong>⚠️ Nasıl Eklenir?</strong>
+                    <ol style="margin-left: 20px; margin-top: 8px; font-size: 0.9rem;">
+                        <li>Kodu yukarıdan kopyalayın.</li>
+                        <li><code>script.js</code> dosyasını açın.</li>
+                        <li><code>allMods</code> içinde <code>fs25</code> veya <code>fs22</code> köşeli parantezleri
+                            <code>[]</code> arasına yapıştırın.
+                        </li>
+                        <li>Mevcut modların arasına virgül <code>,</code> koymayı unutmayın!</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Overlay -->
+    <div id="loginOverlay"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-primary); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+        <div class="login-card"
+            style="background: var(--bg-card); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); max-width: 400px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🔐</div>
+            <h2 style="margin-bottom: 10px;">Yapımcı Girişi</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">
+                Mod eklemek için yetkili yapımcı hesabınızla giriş yapın.
+            </p>
+
+            <div class="form-group" style="text-align: left;">
+                <label>Kullanıcı Adı</label>
+                <input type="text" id="loginUsername" placeholder="Kullanıcı adınız">
+            </div>
+
+            <div class="form-group" style="text-align: left;">
+                <label>Şifre</label>
+                <input type="password" id="loginPassword" placeholder="Şifreniz">
+            </div>
+
+            <div class="form-group" style="text-align: left; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="rememberMe" style="width: auto;">
+                <label for="rememberMe"
+                    style="margin: 0; font-weight: normal; cursor: pointer; color: var(--text-secondary); font-size: 0.9rem;">Beni
+                    Hatırla</label>
+            </div>
+
+            <button onclick="attemptLogin()"
+                style="width: 100%; padding: 14px; background: var(--accent-green); color: white; border: none; border-radius: var(--radius); cursor: pointer; font-weight: 600; font-size: 1rem; margin-top: 10px;">
+                Giriş Yap
+            </button>
+            <p id="loginError" style="color: #ef4444; margin-top: 15px; font-size: 0.9rem; display: none;">Hatalı
+                kullanıcı adı veya şifre!</p>
+
+            <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;">←
+                    Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // YETKİLİ YAPIMCILAR LİSTESİ
+        // Buraya yeni kişiler ekleyebilirsiniz. Format: "kullaniciadi": "sifre"
+        const authorizedUsers = {
+            "admin": "admin911",  // Yönetici hesabı
+            "kerem": "1234"       // Yedek hesap
+        };
+
+        function logout() {
+            localStorage.removeItem('fs_auth_user');
+            location.reload();
+        }
+
+        // Check for existing session
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('fs_auth_user');
+            if (savedUser && authorizedUsers[savedUser]) {
+                // Auto login
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'block';
+                const displayAuthor = savedUser.charAt(0).toUpperCase() + savedUser.slice(1);
+                document.getElementById('modAuthor').value = displayAuthor;
+                updatePreview();
+            }
+        });
+
+        function attemptLogin() {
+            const userIn = document.getElementById('loginUsername').value.trim();
+            const passIn = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            const errorMsg = document.getElementById('loginError');
+
+            // Kullanıcı adı kontrolü (küçük harfe çevirerek)
+            const userKey = Object.keys(authorizedUsers).find(u => u.toLowerCase() === userIn.toLowerCase());
+
+            if (userKey && authorizedUsers[userKey] === passIn) {
+                // Giriş Başarılı
+                if (rememberMe) {
+                    localStorage.setItem('fs_auth_user', userKey);
+                }
+
+                document.getElementById('loginOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loginOverlay').style.display = 'none';
+                }, 500);
+
+                document.getElementById('logoutBtn').style.display = 'block';
+                const displayAuthor = userKey.charAt(0).toUpperCase() + userKey.slice(1);
+                const authorInput = document.getElementById('modAuthor');
+                authorInput.value = displayAuthor;
+                updatePreview();
+            } else {
+                // Hata
+                errorMsg.style.display = 'block';
+                const card = document.querySelector('.login-card');
+                card.style.transform = 'translateX(10px)';
+                setTimeout(() => card.style.transform = 'translateX(-10px)', 100);
+                setTimeout(() => card.style.transform = 'translateX(10px)', 200);
+                setTimeout(() => card.style.transform = 'translateX(0)', 300);
+            }
+        }
+
+        // Enter tuşu ile giriş
+        document.getElementById('loginPassword').addEventListener('keyup', function (event) {
+            if (event.key === "Enter") {
+                attemptLogin();
+            }
+        });
+
+        const categoryLabels = {
+            all: 'Tümü',
+            tractors: 'Traktörler',
+            maps: 'Haritalar',
+            equipment: 'Ekipmanlar',
+            harvesters: 'Biçerdöverler',
+            trucks: 'Kamyonlar'
+        };
+
+        function addImageInput() {
+            const container = document.getElementById('imageInputs');
+            const div = document.createElement('div');
+            div.className = 'image-input-group';
+            div.style.marginBottom = '10px';
+            div.style.display = 'flex';
+            div.style.gap = '10px';
+
+            div.innerHTML = `
+                <input type="text" class="mod-image-url" placeholder="https://..." oninput="updatePreview()">
+                <button onclick="this.parentElement.remove(); updatePreview()" style="background: var(--accent-orange); border:none; color:white; border-radius:4px; cursor:pointer; padding:0 10px;">🗑️</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function updatePreview() {
+            // Get values
+            const name = document.getElementById('modName').value || 'Mod Adı';
+            const category = document.getElementById('modCategory').value;
+            const desc = document.getElementById('modDesc').value || 'Açıklama buraya gelecek...';
+            const author = document.getElementById('modAuthor').value || 'Yapımcı';
+
+            // Collect images
+            const imageInputs = document.querySelectorAll('.mod-image-url');
+            const images = Array.from(imageInputs).map(input => input.value).filter(val => val.trim() !== '');
+            const mainImage = images.length > 0 ? images[0] : '';
+
+            // Update UI
+            document.getElementById('previewTitle').innerText = name;
+            document.getElementById('previewCategory').innerText = categoryLabels[category] || category.toUpperCase();
+            document.getElementById('previewDesc').innerText = desc;
+            document.getElementById('previewAuthor').innerText = `👤 ${author}`;
+
+            const imgPreview = document.getElementById('previewImage');
+            if (mainImage) {
+                imgPreview.src = mainImage;
+            } else {
+                imgPreview.src = `https://via.placeholder.com/400x200/1a1a25/4ade80?text=${encodeURIComponent(name)}`;
+            }
+
+            // Show badge if multiple images
+            const cardFooter = document.querySelector('.mod-card-footer');
+            const existingBadge = document.getElementById('previewCodeBadge');
+            if (existingBadge) existingBadge.remove(); // clear old badge logic if any (optional)
+
+            generateCode();
+        }
+
+        function generateCode() {
+            const game = document.getElementById('gameType').value;
+            const id = Math.floor(Math.random() * 1000) + 100; // Random ID
+
+            // Collect images
+            const imageInputs = document.querySelectorAll('.mod-image-url');
+            const images = Array.from(imageInputs).map(input => input.value).filter(val => val.trim() !== '');
+
+            const modObj = {
+                id: id,
+                name: document.getElementById('modName').value,
+                category: document.getElementById('modCategory').value,
+                description: document.getElementById('modDesc').value,
+                author: document.getElementById('modAuthor').value,
+                images: images, // Changed from image to images array
+                downloadUrl: document.getElementById('modLink').value
+            };
+
+            const json = JSON.stringify(modObj, null, 4);
+            document.getElementById('generatedCode').innerText = json + ",";
+        }
+
+        function copyCode() {
+            const code = document.getElementById('generatedCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Kod kopyalandı! script.js dosyasına yapıştırabilirsiniz.');
+            });
+        }
+
+        function toggleLinkInput() {
+            const linkType = document.querySelector('input[name="linkType"]:checked').value;
+            const webGroup = document.getElementById('webInputGroup');
+            const localGroup = document.getElementById('localInputGroup');
+
+            if (linkType === 'web') {
+                webGroup.style.display = 'block';
+                localGroup.style.display = 'none';
+            } else {
+                webGroup.style.display = 'none';
+                localGroup.style.display = 'block';
+            }
+            updatePreview(); // Re-trigger code gen
+        }
+
+        // Initialize
+        updatePreview();
+    </script>
+</body>
+
+</html>
